@@ -1,6 +1,4 @@
 #include<iostream>
-#include <random>
-#include <chrono>
 #include"map.h"
 
 using namespace std;
@@ -133,30 +131,26 @@ void Map::move() {
 }
 
 void Map::event_display() {
-    //ランダムイベント・スキル抽選用乱数
-    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-    mt19937 gen(seed);
-    uniform_int_distribution<> choose(0, 4);
+    //ランダムイベント
     switch (event) {
 
         //□マス侵入時
     case 0: {
 
-        //40%で戦闘、20%で弱スキル獲得、20%で回復、20%でスカ
-        switch (choose(gen)) {
+        //40%で戦闘、20%で弱スキル獲得、20%で回復、20%でスカ(確率操作をrandom.cppに移行)
+        switch (Random::randomEvent()) {
         case 0:
-        case 1:
             event = game.start(player);
             break;
-        case 2: {
-            Skill* s = createNormalSkill(choose(gen));
+        case 1: {
+            Skill* s = createNormalSkill(Random::chooseNormalSkill());
             player.addSkill(s);
             break;
         }
-        case 3:
+        case 2:
             player.heal(1);
             break;
-        case 4:
+        case 3:
             cout << "しかしなにも起こらなかった" << endl;
             break;
         }
@@ -171,7 +165,7 @@ void Map::event_display() {
 
           //Eマス侵入時
     case 3: {
-        Skill* s = createSpecialSkill(choose(gen));
+        Skill* s = createSpecialSkill(Random::chooseSpecialSkill());
         player.addSkill(s);
         break;
     }

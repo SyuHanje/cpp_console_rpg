@@ -8,14 +8,7 @@ using namespace std;
 //戦闘開始
 int Game::start(Player& player) {
     cout << "戦闘開始！" << endl;
-
-    //乱数で出現敵抽選
-    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-    mt19937 gen(seed);
-    uniform_int_distribution<> choose(0, 3);
-
-    int enemyType = choose(gen);
-    Enemy enemy(enemyType);
+    Enemy enemy(Random::createEnemy());
 
     cout << "出現: " << enemy.name << " が現れた！" << endl;
 

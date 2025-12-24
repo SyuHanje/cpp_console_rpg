@@ -26,7 +26,6 @@ public:
     }
 };
 
-//スキル抽選用関数
 Skill* createNormalSkill(int raffle);
 Skill* createSpecialSkill(int raffle);
 

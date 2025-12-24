@@ -3,6 +3,7 @@
 #include "player.h"
 #include "game.h"
 #include "skill.h"
+#include "random.h"
 
 #ifndef _MAP_H_
 #define _MAP_H_
