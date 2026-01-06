@@ -7,7 +7,7 @@ class Action {
 public:
 
 	//ターン進行テキスト
-	int trun();
+	int turn();
 
 	//戦闘ターン数カウンター
 	int turnNUM = 1;

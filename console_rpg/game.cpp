@@ -22,14 +22,6 @@ int Game::start(Player& player) {
 
     //プレイヤーの生存トリガー確認
     return player.alive() ? 0 : -2;
-    /*注：三項演算子ってやつらしい。「条件式 ? 条件がtrueのときの値 : 条件がfalseのときの値」
-    if (player.alive()) {
-        return 0;
-    }
-    else {
-        return -2;
-    }
-    を一行にまとめた処理*/
 }
 
 //戦闘開始(ボス用)
@@ -53,7 +45,7 @@ void Game::battle(Player& player, Enemy& enemy) {
         player.applySkills();
 
         //1、敵に攻撃　2、防御有効化  3、その他数字番号
-        switch (act.trun()) {
+        switch (act.turn()) {
 
         case 1:
             enemy.dmg(player.atk);
