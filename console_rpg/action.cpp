@@ -4,7 +4,7 @@
 using namespace std;
 
 //戦闘中の入力とターン進行を管理
-int Action::trun() {
+int Action::turn() {
 
 	cout << turnNUM << "ターン目、どうすんだよ。　１、攻撃　２、防御：　";
 	cin >> act;	
