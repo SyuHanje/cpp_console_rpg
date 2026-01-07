@@ -8,34 +8,24 @@ using namespace std;
 Enemy::Enemy(int type) : Character("敵", 15, 100, 0, 100) {
     switch (type) {
     case 0:
-        name = "悪いスライム";
-        atk = 10;
-        hp = max_hp = 50;
-        def = 2;
+        setName("悪いスライム");
+        setStatus(10, 50, 2);
         break;
     case 1:
-        name = "スレイヤーされしゴブリン";
-        atk = 10;
-        hp = max_hp = 80;
-        def = 4;
+        setName("スレイヤーされしゴブリン");
+        setStatus(10, 80, 4);
         break;
     case 2:
-        name = "娘攫いのオーク";
-        atk = 10;
-        hp = max_hp = 120;
-        def = 6;
+        setName("娘攫いのオーク");
+        setStatus(10, 120, 6);
         break;
     case 3:
-        name = "「D」ドラゴン";
-        atk = 10;
-        hp = max_hp = 200;
-        def = 10;
+        setName("「D」ドラゴン");
+        setStatus(10, 200, 10);
         break;
     default:
-        name = "深淵で覗き返すモノ";
-        atk = 50;
-        hp = max_hp = 300;
-        def = 5;
+        setName("深淵で覗き返すモノ");
+        setStatus(50, 300, 5);
         break;
     }
 }
@@ -47,8 +37,8 @@ void Enemy::dmg(int Value) {
     Character::dmg(Value);
 
     //敵被ダメージ時のテキスト表示
-    cout << "プレイヤーの攻撃！敵のHPが" << hp << "になった" << endl;
-    if (hp == 0) {
+    cout << "プレイヤーの攻撃！敵のHPが" << getHp() << "になった" << endl;
+    if (!alive()) {
         cout << "敵は倒れた！" << endl;
     }
 }

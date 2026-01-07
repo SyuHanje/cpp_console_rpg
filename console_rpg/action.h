@@ -15,7 +15,7 @@ public:
 protected:
 
 	//s“®ƒgƒŠƒK[
-	int act;
+	int act = 0;
 };
 
 #endif//_ACTION_H_
