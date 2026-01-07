@@ -18,32 +18,10 @@ void Player::dmg(int Value) {
     Character::dmg(Value);
 
     //戦闘テキスト処理
-    std::cout << "敵の攻撃！プレイヤーのHPが" << hp << "になった" << endl << endl;
-    if (hp == 0) {
+    std::cout << "敵の攻撃！プレイヤーのHPが" << getHp() << "になった" << endl << endl;
+    if (!alive()) {
         std::cout << "プレイヤーは倒れた！" << endl;
     }
-}
-
-//回復マス処理
-void Player::heal(int trigger) {
-
-    //ランダムマス経由
-    if (trigger == 1) {
-        hp += (max_hp / 5);      
-    }
-
-    //Hマス経由
-    else {
-        hp += (max_hp / 3);
-    }
-
-    //最大値以上には回復しない
-    if (hp > max_hp) {
-        hp = max_hp;
-    }
-
-    //回復テキスト処理
-    cout << "回復してHPが" << hp << "になった" << endl;
 }
 
 //スキル適用関数
@@ -82,4 +60,19 @@ void Player::addSkill(Skill* newSkill) {
 
     cout << "スキル獲得！ " << newSkill->name
         << "（" << newSkill->description << "）" << endl;
+}
+
+void Player::addAtk(int value) {
+    atk += value;
+}
+
+void Player::setGuard(bool value) {
+    guard = value;
+}
+
+void Player::healByRate(float rate) {
+    int amount = static_cast<int>(max_hp * rate);
+    recover(amount);
+
+    cout << "HPが回復した！（現在 " << getHp() << "）" << endl;
 }

@@ -10,7 +10,7 @@ int Game::start(Player& player) {
     cout << "戦闘開始！" << endl;
     Enemy enemy(Random::createEnemy());
 
-    cout << "出現: " << enemy.name << " が現れた！" << endl;
+    cout << "出現: " << enemy.getName() << " が現れた！" << endl;
 
     //雑魚戦用遷移
     battle(player, enemy);
@@ -30,7 +30,7 @@ void Game::boss_start(Player& player) {
 
     //ボス戦用セッティング
     Enemy enemy(4);
-    cout << "出現:" << enemy.name << " が現れた！" << endl;
+    cout << "出現:" << enemy.getName() << " が現れた！" << endl;
 
     //ボス戦用遷移
     battle(player,enemy);
@@ -48,7 +48,7 @@ void Game::battle(Player& player, Enemy& enemy) {
         switch (act.turn()) {
 
         case 1:
-            enemy.dmg(player.atk);
+            enemy.dmg(player.getAtk());
             break;
 
         case 2:
@@ -62,18 +62,11 @@ void Game::battle(Player& player, Enemy& enemy) {
 
         //敵の攻撃
         if (enemy.alive() && player.alive()) {
-            player.dmg(enemy.atk);
+            player.dmg(enemy.getAtk());
         }
 
         //防御を無効化
         player.guard = false;
-    }
-
-    //戦闘終了時にプレイヤーを小回復
-    if (player.alive()) {
-        player.hp += 20;
-        if (player.hp > player.max_hp) player.hp = player.max_hp;
-        cout << "プレイヤーは20回復した！（" << player.hp << "までhpが回復した" "）" << endl;
     }
 
     //スキル発動トリガーをリセット

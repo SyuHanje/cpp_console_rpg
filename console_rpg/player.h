@@ -1,12 +1,11 @@
 #pragma once
-#include <string>
-#include <vector>
-#include "Character.h"
-#include "skill.h"
-//味方ステータス
-
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
+
+#include <string>
+#include <vector>
+#include "character.h"
+#include "skill.h"
 
 class Player : public Character {
 public:
@@ -33,14 +32,19 @@ public:
 	//戦闘処理(プレイヤー)
 	void dmg(int) override;
 
-	//回復マス処理
-	void heal(int);
 
 	//スキル適用関数
 	void applySkills();
 
 	//スキル獲得・強化関数
 	void addSkill(Skill* skill);
+
+	void addAtk(int value);
+
+	void setGuard(bool value);
+
+	//回復量・テキスト
+	void healByRate(float);
 };
 
 #endif //_PLAYER_H_

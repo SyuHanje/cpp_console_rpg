@@ -40,10 +40,10 @@ void LowHpAttackUp::apply(Player& player) {
     }
 
     //発動条件:HP80%以下のターン開始時(戦闘中一回のみ)　　効果：その戦闘中、ATK+30%(レベルアップするごとに、追加で+30%)
-    if (player.hp <= player.max_hp * 0.8) {
-        int base = static_cast<int>(player.atk * 0.3);
+    if (player.getHp() <= player.getMaxHp() * 0.8) {
+        int base = static_cast<int>(player.getAtk() * 0.3);
         int buff = base * level;
-        player.atk += buff;
+        player.addAtk(buff);
         player.lowHpTriggered = true;
 
         if (level > 1) {
@@ -65,10 +65,10 @@ void SuperLowHpAttackUp::apply(Player& player) {
     }
 
     //発動条件:HP30%以下のターン開始時(戦闘中一回のみ)　　効果：その戦闘中、ATK+100%(レベルアップするごとに、追加で+100%)
-    if (player.hp <= player.max_hp * 0.3) {
-        int base = static_cast<int>(player.atk);
+    if (player.getHp() <= player.getMaxHp() * 0.3) {
+        int base = static_cast<int>(player.getAtk());
         int buff = base * level;
-        player.atk += buff;
+        player.addAtk(buff);
         player.superLowHpTriggered = true;
 
         if (level > 1) {

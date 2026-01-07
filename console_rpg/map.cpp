@@ -148,7 +148,7 @@ void Map::event_display() {
             break;
         }
         case 2:
-            player.heal(1);
+            player.healByRate(0.2f);
             break;
         case 3:
             cout << "‚µ‚©‚µ‚È‚É‚à‹N‚±‚ç‚È‚©‚Á‚½" << endl;
@@ -159,7 +159,7 @@ void Map::event_display() {
 
           //Hƒ}ƒXN“ü
     case 2: {
-        player.heal(2);
+        player.healByRate(0.4f);
         break;
     }
 
