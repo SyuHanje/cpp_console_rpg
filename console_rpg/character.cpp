@@ -58,6 +58,7 @@ void Character::recover(int amount) {
     }
 }
 
+//ステータス設定
 void Character::setStatus(int a, int h, int d) {
     atk = a;
     hp = h;

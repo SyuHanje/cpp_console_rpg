@@ -137,7 +137,7 @@ void Map::event_display() {
         //□マス侵入時
     case 0: {
 
-        //40%で戦闘、20%で弱スキル獲得、20%で回復、20%でスカ(確率操作をrandom.cppに移行)
+        //40%で戦闘、20%で弱スキル獲得、20%で回復、20%でスカ
         switch (Random::randomEvent()) {
         case 0:
             event = game.start(player);

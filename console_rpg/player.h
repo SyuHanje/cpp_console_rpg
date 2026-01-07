@@ -41,8 +41,6 @@ public:
 
 	void addAtk(int value);
 
-	void setGuard(bool value);
-
 	//回復量・テキスト
 	void healByRate(float);
 };

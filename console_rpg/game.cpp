@@ -37,6 +37,7 @@ void Game::boss_start(Player& player) {
     cout << "í“¬I—¹I" << endl;
 }
 
+//í“¬’†‚Ìˆ—
 void Game::battle(Player& player, Enemy& enemy) {
 
     while (enemy.alive() && player.alive()) {

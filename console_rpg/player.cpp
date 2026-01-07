@@ -62,14 +62,13 @@ void Player::addSkill(Skill* newSkill) {
         << "i" << newSkill->description << "j" << endl;
 }
 
+//ƒXƒLƒ‹‚È‚Ç‚ÌUŒ‚‰ÁŽZˆ—
 void Player::addAtk(int value) {
     atk += value;
 }
 
-void Player::setGuard(bool value) {
-    guard = value;
-}
 
+//‰ñ•œˆ—
 void Player::healByRate(float rate) {
     int amount = static_cast<int>(max_hp * rate);
     recover(amount);
