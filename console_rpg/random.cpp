@@ -20,6 +20,28 @@ int Random::randomRange(int min,int max) {
     return choose(gen);
 }
 
+StatusRate Random::createPlayerStatusRate() {
+    StatusRate rate;
+
+    rate.hpRate = randomRange(80, 130);
+
+    if (rate.hpRate > 110) {
+        rate.atkRate = randomRange(70, 110);
+    }
+    else {
+        rate.atkRate = randomRange(80, 130);
+    }
+
+    if (rate.hpRate + rate.atkRate > 220) {
+        rate.defRate = randomRange(70, 130);
+    }
+    else {
+        rate.defRate = randomRange(100, 200);
+    }
+
+    return rate;
+}
+
 //以下、呼び出しに応じて乱数範囲を設定
 
 //敵エンカウント時
