@@ -1,8 +1,9 @@
 #pragma once
-#include "character.h"
-
 #ifndef _ENEMY_H_
 #define _ENEMY_H_
+
+#include "character.h"
+#include "random.h"
 
 class Enemy : public Character {
 
@@ -15,6 +16,10 @@ public:
 
     //í“¬ˆ—(“G)
     void dmg(int) override;
+
+    int applyRandomHp(const StatusRate&);
+    int applyRandomAtk(const StatusRate&);
+    int applyRandomDef(const StatusRate&);
 };
 
 #endif //_ENEMY_H_

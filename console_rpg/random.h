@@ -19,6 +19,7 @@ public:
 	static int chooseSpecialSkill();
 
 	static StatusRate createPlayerStatusRate();
+	static StatusRate createEnemyStatusRate();
 };
 
 #endif //_RANDOM_H_

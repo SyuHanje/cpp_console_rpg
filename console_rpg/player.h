@@ -45,7 +45,7 @@ public:
 	//回復量・テキスト
 	void healByRate(float);
 
-	void applyRandomStatus(const StatusRate& rate);
+	void applyRandomStatus(const StatusRate&);
 };
 
 #endif //_PLAYER_H_

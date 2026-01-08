@@ -5,7 +5,6 @@ using namespace std;
 
 void Map::map_main() {
 
-
     static bool initialized = false;
     if (!initialized) {
         player.applyRandomStatus(Random::createPlayerStatusRate());

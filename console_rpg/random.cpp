@@ -42,6 +42,16 @@ StatusRate Random::createPlayerStatusRate() {
     return rate;
 }
 
+StatusRate Random::createEnemyStatusRate() {
+    StatusRate rate;
+
+    rate.hpRate = randomRange(80, 120);
+    rate.atkRate = randomRange(80, 120);
+    rate.defRate = randomRange(80, 150);
+
+    return rate;
+}
+
 //以下、呼び出しに応じて乱数範囲を設定
 
 //敵エンカウント時
