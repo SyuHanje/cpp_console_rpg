@@ -1,11 +1,11 @@
 #pragma once
+#ifndef _GAME_H_
+#define _GAME_H_
+
 #include "player.h"
 #include "enemy.h"
 #include "action.h"
 #include "random.h"
-
-#ifndef _GAME_H_
-#define _GAME_H_
 
 class Game {
 

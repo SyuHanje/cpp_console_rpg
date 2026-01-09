@@ -1,28 +1,39 @@
 #pragma once
-#include <string>
-
 #ifndef _CHARACTER_H_
 #define _CHARACTER_H_
+
+#include <string>
 
 class Character {
 
 	//基礎ステータス
 public:
-	int atk;
-	int hp;
-	int max_hp;
-	int def;
-	std::string name;
+    bool alive() const;
 
-	Character(std::string n, int a, int h, int d, int m)
-		: name(n), atk(a), hp(h), def(d) ,max_hp(m){
-	}
+    int getHp() const;
+    int getAtk() const;
+    int getDef() const;
+    int getMaxHp() const;
+    const std::string& getName() const;
 
-	//ダメージ処理
-	virtual void dmg(int);
+    //回復関連
+    void recover(int amount);
 
-	//生存トリガー
-	bool alive();
+    virtual void dmg(int);
+
+protected:
+    int atk;
+    int hp;
+    int max_hp;
+    int def;
+    std::string name;
+
+    Character(std::string n, int a, int h, int d, int m)
+        : name(std::move(n)), atk(a), hp(h), def(d), max_hp(m) {
+    }
+
+    void setStatus(int a, int h, int d);
+    void setName(const std::string& n);
 };
 
 #endif//_CHARACTER_H_

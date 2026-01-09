@@ -22,8 +22,50 @@ void Character::dmg(int Value) {
 }
 
 //生存確認トリガー
-bool Character::alive() {
+bool Character::alive() const {
+    return hp > 0;
+}
 
-    //hpが0より大きい場合に生存判定を返す
-	return hp > 0;
+//ステータス取得
+int Character::getHp() const { 
+    return hp; 
+}
+
+int Character::getAtk() const { 
+    return atk; 
+}
+
+int Character::getDef() const { 
+    return def; 
+}
+
+int Character::getMaxHp() const {
+    return max_hp; 
+
+}
+
+const std::string& Character::getName() const {
+    return name;
+}
+
+//回復関数
+void Character::recover(int amount) {
+    if (amount <= 0) return;
+
+    hp += amount;
+    if (hp > max_hp) {
+        hp = max_hp;
+    }
+}
+
+//ステータス設定
+void Character::setStatus(int a, int h, int d) {
+    atk = a;
+    hp = h;
+    max_hp = h;
+    def = d;
+}
+
+void Character::setName(const std::string& n) {
+    name = n;
 }

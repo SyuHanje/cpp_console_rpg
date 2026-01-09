@@ -1,4 +1,7 @@
 #pragma once
+#ifndef _SKILL_H_
+#define _SKILL_H_
+
 #include <string>
 #include <vector>
 
@@ -38,3 +41,5 @@ public:
     SuperLowHpAttackUp() : Skill("根源の力", "発動条件:HP30%以下のターン開始時(戦闘中一回のみ)　　効果：その戦闘中、ATK+100%(レベルアップするごとに、追加で+100%)") {}
     void apply(Player& player) override;
 };
+
+#endif //_SKILL_H_
