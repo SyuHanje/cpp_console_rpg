@@ -75,3 +75,26 @@ void Player::healByRate(float rate) {
 
     cout << "HPが回復した！（現在 " << getHp() << "）" << endl;
 }
+
+//プレイヤーのステータス初期値変動
+void Player::applyRandomStatus(const StatusRate& rate) {
+
+    //基礎値の保存
+    const int baseAtk = atk;
+    const int baseHp = max_hp;
+    const int baseDef = def;
+
+    //乱数をステータスに加算
+    atk = atk * rate.atkRate / 100;
+    max_hp = max_hp * rate.hpRate / 100;
+    def = def * rate.defRate / 100;
+
+    hp = max_hp;
+    base_atk = atk;
+
+    //変動後ステータス表示
+    cout << "プレイヤーの初期ステータス　"
+        << "HP:" << getMaxHp() << "（" << rate.hpRate << "%）"
+        << "ATK:" << getAtk() << "（" << rate.atkRate << "%）"
+        << "DEF:" << getDef() << "（" << rate.defRate << "%）" << endl;
+}

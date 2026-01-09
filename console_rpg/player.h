@@ -6,6 +6,7 @@
 #include <vector>
 #include "character.h"
 #include "skill.h"
+#include "random.h"
 
 class Player : public Character {
 public:
@@ -25,7 +26,7 @@ public:
 	std::vector<Skill*> skills; 
 
 	//プレイヤーステータス設定
-	Player() : Character("プレイヤー", 20, 100, 0, 100) {
+	Player() : Character("プレイヤー", 20, 100, 3, 100) {
 		base_atk = atk;
 	}
 
@@ -43,6 +44,9 @@ public:
 
 	//回復量・テキスト
 	void healByRate(float);
+
+	//初期ステータス変動関数
+	void applyRandomStatus(const StatusRate&);
 };
 
 #endif //_PLAYER_H_

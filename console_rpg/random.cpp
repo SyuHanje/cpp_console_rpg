@@ -20,6 +20,48 @@ int Random::randomRange(int min,int max) {
     return choose(gen);
 }
 
+//プレイヤーのステータス変動幅
+StatusRate Random::createPlayerStatusRate() {
+
+    StatusRate rate;
+
+    //「防御型」「攻撃型」「バランス型」と、方向性があって、極端に強い・弱いステータスとなりにくいよう、乱数を調整
+    rate.hpRate = randomRange(80, 130);
+
+    if (rate.hpRate > 120) {
+        rate.defRate = randomRange(70, 130);
+    }
+    else if (rate.hpRate > 90) {
+        rate.defRate = randomRange(80, 150);
+    }
+    else {
+        rate.defRate = randomRange(100, 200);
+    }
+
+    if (rate.hpRate + rate.defRate > 240) {
+        rate.atkRate = randomRange(80, 110);
+    }
+    else if (rate.hpRate + rate.defRate > 200) {
+        rate.atkRate = randomRange(100, 120);
+    }
+    else {
+        rate.atkRate = randomRange(110, 150);
+    }
+
+    return rate;
+}
+
+//敵のステータス変動幅
+StatusRate Random::createEnemyStatusRate() {
+    StatusRate rate;
+
+    rate.hpRate = randomRange(80, 120);
+    rate.atkRate = randomRange(80, 120);
+    rate.defRate = randomRange(80, 150);
+
+    return rate;
+}
+
 //以下、呼び出しに応じて乱数範囲を設定
 
 //敵エンカウント時

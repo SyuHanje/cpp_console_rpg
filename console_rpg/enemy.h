@@ -3,6 +3,7 @@
 #define _ENEMY_H_
 
 #include "character.h"
+#include "random.h"
 
 class Enemy : public Character {
 
