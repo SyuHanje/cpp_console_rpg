@@ -16,10 +16,6 @@ public:
 
     //í“¬ˆ—(“G)
     void dmg(int) override;
-
-    int applyRandomHp(const StatusRate&);
-    int applyRandomAtk(const StatusRate&);
-    int applyRandomDef(const StatusRate&);
 };
 
 #endif //_ENEMY_H_

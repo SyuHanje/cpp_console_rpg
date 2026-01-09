@@ -6,30 +6,34 @@ using namespace std;
 
 //“GƒŠƒXƒg
 Enemy::Enemy(int type) : Character("“G", 15, 100, 0, 100) {
+
+    //“GƒXƒe[ƒ^ƒX‚ğ•Ï“®‚³‚¹‚é—”
+    StatusRate rate = Random::createEnemyStatusRate();
+
     switch (type) {
     case 0:
         setName("ˆ«‚¢ƒXƒ‰ƒCƒ€");
-        setStatus(10 * applyRandomAtk(Random::createEnemyStatusRate()) / 100, 
-                  50 * applyRandomHp(Random::createEnemyStatusRate()) / 100,
-                  2 * applyRandomDef(Random::createEnemyStatusRate()) / 100);
+        setStatus(10 * rate.atkRate / 100,
+                  50 * rate.hpRate / 100,
+                  2 * rate.defRate / 100);
         break;
     case 1:
         setName("ƒXƒŒƒCƒ„[‚³‚ê‚µƒSƒuƒŠƒ“");
-        setStatus(10 * applyRandomAtk(Random::createEnemyStatusRate()) / 100,
-                  80 * applyRandomHp(Random::createEnemyStatusRate()) / 100,
-                  4 * applyRandomDef(Random::createEnemyStatusRate()) / 100);
+        setStatus(10 * rate.atkRate / 100,
+                  80 * rate.hpRate / 100,
+                  4 * rate.defRate / 100);
         break;
     case 2:
         setName("–ºº‚¢‚ÌƒI[ƒN");
-        setStatus(10 * applyRandomAtk(Random::createEnemyStatusRate()) / 100,
-                  120 * applyRandomHp(Random::createEnemyStatusRate()) / 100,
-                  6 * applyRandomDef(Random::createEnemyStatusRate()) / 100);
+        setStatus(10 * rate.atkRate / 100,
+                  120 * rate.hpRate / 100,
+                  6 * rate.defRate / 100);
         break;
     case 3:
         setName("uDvƒhƒ‰ƒSƒ“");
-        setStatus(10 * applyRandomAtk(Random::createEnemyStatusRate()) / 100,
-                  200 * applyRandomHp(Random::createEnemyStatusRate()) / 100,
-                  10 * applyRandomDef(Random::createEnemyStatusRate()) / 100);
+        setStatus(10 * rate.atkRate / 100,
+                  200 * rate.hpRate / 100,
+                  10 * rate.defRate / 100);
         break;
     default:
         setName("[•£‚Å”`‚«•Ô‚·ƒ‚ƒm");
@@ -49,16 +53,4 @@ void Enemy::dmg(int Value) {
     if (!alive()) {
         cout << "“G‚Í“|‚ê‚½I" << endl;
     }
-}
-
-int Enemy::applyRandomHp(const StatusRate& rate) {
-    return rate.hpRate;
-}
-
-int Enemy::applyRandomAtk(const StatusRate& rate) {
-    return rate.atkRate;
-}
-
-int Enemy::applyRandomDef(const StatusRate& rate) {
-    return rate.defRate;
 }

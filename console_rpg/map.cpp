@@ -5,6 +5,7 @@ using namespace std;
 
 void Map::map_main() {
 
+    //ゲーム開始時に、一度だけプレイヤーのステータスをランダムに変動させる
     static bool initialized = false;
     if (!initialized) {
         player.applyRandomStatus(Random::createPlayerStatusRate());

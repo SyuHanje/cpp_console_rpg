@@ -20,6 +20,7 @@ int Random::randomRange(int min,int max) {
     return choose(gen);
 }
 
+//プレイヤーのステータス変動幅
 StatusRate Random::createPlayerStatusRate() {
     StatusRate rate;
 
@@ -42,6 +43,7 @@ StatusRate Random::createPlayerStatusRate() {
     return rate;
 }
 
+//敵のステータス変動幅
 StatusRate Random::createEnemyStatusRate() {
     StatusRate rate;
 

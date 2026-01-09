@@ -45,6 +45,7 @@ public:
 	//回復量・テキスト
 	void healByRate(float);
 
+	//初期ステータス変動関数
 	void applyRandomStatus(const StatusRate&);
 };
 
