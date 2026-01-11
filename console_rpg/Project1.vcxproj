@@ -131,6 +131,7 @@
     <ClCompile Include="map.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="random.cpp" />
+    <ClCompile Include="saveload.cpp" />
     <ClCompile Include="skill.cpp" />
     <ClCompile Include="skill.h" />
   </ItemGroup>
@@ -142,6 +143,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="random.h" />
+    <ClInclude Include="saveload.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

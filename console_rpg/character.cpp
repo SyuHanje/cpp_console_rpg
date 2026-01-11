@@ -48,6 +48,32 @@ const std::string& Character::getName() const {
     return name;
 }
 
+//ステータス代入
+void Character::setHp(int value) {
+    hp = value;
+    if (hp < 0) {
+        hp = 0;
+    }
+    if (hp > max_hp) {
+        hp = max_hp;
+    }
+}
+
+void Character::setMaxHp(int value) {
+    max_hp = value;
+    if (hp > max_hp) {
+        hp = max_hp;
+    }
+}
+
+void Character::setAtk(int value) {
+    atk = value;
+}
+
+void Character::setDef(int value) {
+    def = value;
+}
+
 //回復関数
 void Character::recover(int amount) {
     if (amount <= 0) return;
