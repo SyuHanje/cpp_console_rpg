@@ -25,7 +25,7 @@ public:
 	// 獲得したスキル一覧
 	std::vector<Skill*> skills; 
 
-	//プレイヤーステータス設定
+	//プレイヤーステータス
 	Player() : Character("プレイヤー", 20, 100, 3, 100) {
 		base_atk = atk;
 	}
@@ -47,6 +47,9 @@ public:
 
 	//初期ステータス変動関数
 	void applyRandomStatus(const StatusRate&);
+
+	void clearSkills();
+	void addSkillByName(const std::string& name, int level);
 };
 
 #endif //_PLAYER_H_

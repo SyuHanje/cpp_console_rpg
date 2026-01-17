@@ -4,19 +4,12 @@
 using namespace std;
 
 void Map::map_main() {
-
-    //ゲーム開始時に、一度だけプレイヤーのステータスをランダムに変動させる
-    static bool initialized = false;
-    if (!initialized) {
-        player.applyRandomStatus(Random::createPlayerStatusRate());
-        initialized = true;
-    }
-
-    //マップ表示
-    map_display();
     
     //イベント値が-1の場合ゲーム終了（ゲームクリア）
     while (event != -1) {
+
+        //マップ表示
+        map_display();
 
         //マップ上移動＆イベント管理関数
         move();
@@ -25,6 +18,7 @@ void Map::map_main() {
         //ゲームオーバー時の処理
         if (event == -2) {
             cout << "[Game over]";
+            saveLoad.erase(0);
             return;
         }
     }
@@ -85,6 +79,7 @@ int Map::map_display() {
     else {
         //ゲームオーバー
         event = -2;
+        saveLoad.erase(0);
         return -2;
     }
 }
@@ -96,9 +91,13 @@ void Map::move() {
         //値を手に入れる(移動確認＆移動不可時のリセット用)
         int move_x = x, move_y = y;
 
+        saveLoad.save(player, *this, 0);
+
         //移動メニュー
         cout << endl << "[移動メニュー]" << endl << "1:←　 2 :↑　 3 :→ 　4 :↓" << endl;
         cin >> menu_no;
+
+        
 
         switch (menu_no) {
         case 1:
@@ -181,11 +180,29 @@ void Map::event_display() {
     case 4: {
         game.boss_start(player);
         cout << "魔王が現れた" << endl;
+
+        saveLoad.erase(0);
         event = -1;
     }
 
+          //例外処理
     default: {
         break;
     }
     }
+}
+
+int Map::getX() const { return x; }
+int Map::getY() const { return y; }
+void Map::setPosition(int px, int py) { x = px; y = py; }
+
+int(&Map::getMap())[5][12]{
+    return map;
+}
+const int(&Map::getMap() const)[5][12]{
+    return map;
+}
+
+void Map::setMapCell(int i, int j, int value) {
+    map[i][j] = value;
 }
