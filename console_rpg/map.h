@@ -19,14 +19,18 @@ public:
 	void map_main();
 
 	//マップ表示関連
-	int map_display();
+	void map_display();
 
-	//マップ移動
+	//マップ移動選択
 	void move();
+
+	//マップ移動処理
+	void applyMove();
 
 	//イベントコントロール
 	void event_display();
 
+	//マップセーブ・ロード用の取得・代入
 	void setPosition(int px, int py);
 	int getX() const;
 	int getY() const;

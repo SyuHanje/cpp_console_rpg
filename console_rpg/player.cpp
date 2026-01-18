@@ -99,6 +99,7 @@ void Player::applyRandomStatus(const StatusRate& rate) {
         << "DEF:" << getDef() << "（" << rate.defRate << "%）" << endl;
 }
 
+//セーブ・ロード時のスキル削除＆再付与
 void Player::clearSkills() {
     for (auto* s : skills) delete s;
     skills.clear();

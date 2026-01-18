@@ -12,9 +12,20 @@ class Player;
 class Map;
 
 class SaveLoad {
+private:
+	//セーブフォルダ・ファイル生成
+	const std::string saveDir = "save";
+	std::string makePath(int) const;
+
 public:
+
+	//セーブ関数
 	bool save(const Player&, const Map&, int);
+
+	//ロード関数
 	bool load(Player&, Map&, int);
+
+	//セーブ削除関数
 	void erase(int slot);
 };
 

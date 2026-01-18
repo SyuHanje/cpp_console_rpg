@@ -18,121 +18,100 @@ void Map::map_main() {
         //ゲームオーバー時の処理
         if (event == -2) {
             cout << "[Game over]";
+            //セーブ削除
             saveLoad.erase(0);
             return;
         }
     }
 }
 
-int Map::map_display() {
+//マップ表示
+void Map::map_display() {
 
-    //壁であるかどうか
-    if (map[x][y] == -1) {
-        return -1;
-    }
-
-    //イベントトリガーに現在地を代入
-    Map::event = map[x][y];
-
-    //移動
-    map[x][y] = 1;
     cout << endl;
 
-    //マップ表示(■:移動不可マス　□:ランダムマス  P:プレイヤー現在地　H:回復マス　E:パッシブスキル獲得マス　B:ボス戦)
-    for (int i = 0;i < max_x; i++) {
-        for (int f = 0; f < max_y; f++) {
-            switch (map[i][f]) {
-            case -1:
-                cout << "■ ";
+    for (int i = 0; i < max_x; i++) {
+        for (int j = 0; j < max_y; j++) {
+
+            if (i == x && j == y) {
+                cout << "P ";
+                continue;
+            }
+
+            //■：通過不可　□：ランダムマス　H：回復マス　E：強スキル獲得マス　B：ボスマス　S：スタート地点(入っても反応なし)
+            switch (map[i][j]) {
+            case -1: 
+                cout << "■ "; 
                 break;
-            case 0:
+            case 0:  
                 cout << "□ ";
                 break;
-            case 1:
-                cout << "P ";
-                break;
-            case 2:
+            case 2:  
                 cout << "H ";
                 break;
-            case 3:
+            case 3: 
                 cout << "E ";
                 break;
-            case 4:
-                cout << "B ";
+            case 4:  
+                cout << "B "; 
+                break;
+            default: 
+                cout << "S ";
                 break;
             }
         }
         cout << endl;
     }
-
-    //通過した場所を移動不可にする
-    map[x][y] = -1;
-
-    //次ターンに移動するスペースがあるか確認
-    if (map[x][y + 1] >= 0 ||
-        map[x][y - 1] >= 0 ||
-        map[x + 1][y] >= 0 ||
-        map[x - 1][y] >= 0) {
-
-        return 0;
-    }
-    else {
-        //ゲームオーバー
-        event = -2;
-        saveLoad.erase(0);
-        return -2;
-    }
 }
 
+//移動選択
 void Map::move() {
-    int menu_no;
-    while (1) {
 
-        //値を手に入れる(移動確認＆移動不可時のリセット用)
-        int move_x = x, move_y = y;
+    int menu_no;
+
+    while (true) {
+
+        int old_x = x;
+        int old_y = y;
 
         saveLoad.save(player, *this, 0);
 
-        //移動メニュー
-        cout << endl << "[移動メニュー]" << endl << "1:←　 2 :↑　 3 :→ 　4 :↓" << endl;
+        cout << endl
+            << "[移動メニュー]" << endl
+            << "1:←  2:↑  3:→  4:↓" << endl;
+
         cin >> menu_no;
 
-        
-
         switch (menu_no) {
-        case 1:
-            y--;
-            break;
-        case 2:
-            x--;
-            break;
-        case 3:
-            y++;
-            break;
-        case 4:
-            x++;
-            break;
+        case 1: y--; break;
+        case 2: x--; break;
+        case 3: y++; break;
+        case 4: x++; break;
+        default:
+            x = old_x;
+            y = old_y;
+            continue;
         }
 
-        //移動可能であることの確認
-        if (move_x >= 0 && x <= max_x && move_y >= 0 && y <= max_y) {
-            //壁に当たった場合
-            if (map_display() != -1) {
-                return;
-            }
-            cout << "壁です";
+        //範囲外
+        if (x < 0 || x >= max_x || y < 0 || y >= max_y) {
+            cout << "そこには行けない" << endl;
+            x = old_x;
+            y = old_y;
+            continue;
         }
 
-        //移動可時マスがない時の処理
-        else if (event == -2) {
-            return;
+        //壁
+        if (map[x][y] == -1) {
+            cout << "壁です" << endl;
+            x = old_x;
+            y = old_y;
+            continue;
         }
 
-        //移動不可時マスに侵入しようとする時の処理（移動前の位置に戻す）
-        x = move_x;
-        y = move_y;
-
-        map_display();
+        //移動確定
+        applyMove();
+        return;
     }
 }
 
@@ -183,6 +162,7 @@ void Map::event_display() {
 
         saveLoad.erase(0);
         event = -1;
+        break;
     }
 
           //例外処理
@@ -192,6 +172,28 @@ void Map::event_display() {
     }
 }
 
+//移動処理
+void Map::applyMove() {
+
+    //イベント取得
+    event = map[x][y];
+
+    //通過済みにする
+    map[x][y] = -1;
+
+    //次に動ける場所があるか確認
+    if (!(map[x][y + 1] >= 0 ||
+        map[x][y - 1] >= 0 ||
+        map[x + 1][y] >= 0 ||
+        map[x - 1][y] >= 0)) {
+
+        //ゲームオーバー
+        event = -2;
+        saveLoad.erase(0);
+    }
+}
+
+//マップのセーブ＆ロード用
 int Map::getX() const { return x; }
 int Map::getY() const { return y; }
 void Map::setPosition(int px, int py) { x = px; y = py; }

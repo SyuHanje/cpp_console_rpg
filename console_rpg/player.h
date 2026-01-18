@@ -48,6 +48,7 @@ public:
 	//初期ステータス変動関数
 	void applyRandomStatus(const StatusRate&);
 
+	//セーブ・ロード用のスキル削除＆再付与
 	void clearSkills();
 	void addSkillByName(const std::string& name, int level);
 };

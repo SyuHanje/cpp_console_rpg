@@ -5,19 +5,20 @@
 using namespace std;
 
 int main() {
-    //ゲーム開始
+    
     Map map;
 
+    //セーブがあればロード、なければプレイヤーのステータスにランダム補正をかける
     if (map.saveLoad.load(map.player, map, 0)) {
-        cout << "オートセーブをロードしました\n";
+        cout << "オートセーブをロードしました" << endl;
     }
     else {
-        // セーブが無いときだけ
         map.player.applyRandomStatus(
             Random::createPlayerStatusRate()
         );
     }
 
+    //ゲーム開始
     map.map_main();
 
     return 0;
