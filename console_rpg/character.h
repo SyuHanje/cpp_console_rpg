@@ -6,7 +6,7 @@
 
 class Character {
 
-	//基礎ステータス
+	//基礎ステータス取得・代入
 public:
     bool alive() const;
 
@@ -16,11 +16,18 @@ public:
     int getMaxHp() const;
     const std::string& getName() const;
 
+    void setHp(int);
+    void setMaxHp(int);
+    void setAtk(int);
+    void setDef(int);
+
     //回復関連
     void recover(int amount);
 
+    //ダメージ処理関数
     virtual void dmg(int);
 
+    //基礎ステータス
 protected:
     int atk;
     int hp;

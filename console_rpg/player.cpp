@@ -98,3 +98,21 @@ void Player::applyRandomStatus(const StatusRate& rate) {
         << "ATK:" << getAtk() << "（" << rate.atkRate << "%）"
         << "DEF:" << getDef() << "（" << rate.defRate << "%）" << endl;
 }
+
+//セーブ・ロード時のスキル削除＆再付与
+void Player::clearSkills() {
+    for (auto* s : skills) delete s;
+    skills.clear();
+}
+
+void Player::addSkillByName(const std::string& name, int level) {
+    Skill* s = nullptr;
+
+    if (name == "戦いの勘") s = new LowHpAttackUp();
+    else if (name == "根源の力") s = new SuperLowHpAttackUp();
+
+    if (!s) return;
+
+    while (s->level < level) s->levelUp();
+    skills.push_back(s);
+}
