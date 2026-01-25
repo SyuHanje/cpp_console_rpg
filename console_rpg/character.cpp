@@ -1,7 +1,7 @@
 #include<iostream>
+#include<string>
 #include"character.h"
 #include"skill.h"
-#include<string>
 
 using namespace std;
 

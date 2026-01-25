@@ -1,6 +1,7 @@
+#include <iostream>
 #include "skill.h"
 #include "player.h"
-#include <iostream>
+
 
 using namespace std;
 

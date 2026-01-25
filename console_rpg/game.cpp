@@ -45,18 +45,20 @@ void Game::battle(Player& player, Enemy& enemy) {
         // スキル発動確認
         player.applySkills();
 
-        //1、敵に攻撃　2、防御有効化  3、その他数字番号
-        switch (act.turn()) {
+            ActionType action = act.next();
 
-        case 1:
+        //1、敵に攻撃　2、防御有効化  3、その他数字番号
+        switch (action) {
+
+        case ActionType::Attack:
             enemy.dmg(player.getAtk());
             break;
 
-        case 2:
+        case ActionType::Guard:
             player.guard = true;
             break;
 
-        case 3:
+        case ActionType::Invalid:
             cout << "文字が読めないんか？？？" << endl;
             continue;
         }

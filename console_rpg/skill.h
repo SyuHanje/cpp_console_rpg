@@ -26,8 +26,8 @@ public:
     }
 };
 
-Skill* createNormalSkill(int raffle);
-Skill* createSpecialSkill(int raffle);
+Skill* createNormalSkill(int);
+Skill* createSpecialSkill(int);
 
 //以下、スキル本体のクラス
 class LowHpAttackUp : public Skill {
