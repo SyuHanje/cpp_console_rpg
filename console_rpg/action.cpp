@@ -3,11 +3,10 @@
 
 using namespace std;
 
-//戦闘中の入力とターン進行を管理
 ActionType Action::next() {
     int act;
 
-    cout << turnNUM << "ターン目、どうすんだよ。 1:攻撃 2:防御 ";
+    cout << turnNUM << "ターン目、どうすんだよ。 １:攻撃 ２:防御 ";
     cin >> act;
 
     turnNUM++;
