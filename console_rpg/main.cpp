@@ -7,6 +7,7 @@ using namespace std;
 int main() {
     
     Map map;
+    Game game;
 
     //セーブがあればロード、なければプレイヤーのステータスにランダム補正をかける
     if (map.saveLoad.load(map.player, map, 0)) {
@@ -19,7 +20,7 @@ int main() {
     }
 
     //ゲーム開始
-    map.map_main();
+    game.run(map, map.player, map.saveLoad);
 
     return 0;
 }
