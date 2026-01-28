@@ -61,10 +61,18 @@ void Map::move() {
         cin >> menu_no;
 
         switch (menu_no) {
-        case 1: y--; break;
-        case 2: x--; break;
-        case 3: y++; break;
-        case 4: x++; break;
+        case 1: 
+            y--; 
+            break;
+        case 2: 
+            x--; 
+            break;
+        case 3: 
+            y++; 
+            break;
+        case 4:
+            x++;
+            break;
         default:
             x = old_x;
             y = old_y;
@@ -87,16 +95,20 @@ void Map::move() {
             continue;
         }
 
-        //移動確定
-        applyMove();
         return;
     }
 }
 
 //マップのセーブ＆ロード用
-int Map::getX() const { return x; }
-int Map::getY() const { return y; }
-void Map::setPosition(int px, int py) { x = px; y = py; }
+int Map::getX() const { 
+    return x;
+}
+int Map::getY() const {
+    return y;
+}
+void Map::setPosition(int px, int py) { 
+    x = px; y = py;
+}
 
 int(&Map::getMap())[5][12]{
     return map;

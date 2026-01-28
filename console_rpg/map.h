@@ -20,9 +20,6 @@ public:
 	//マップ移動選択
 	void move();
 
-	//マップ移動処理
-	void applyMove();
-
 	//マップセーブ・ロード用の取得・代入
 	void setPosition(int px, int py);
 	int getX() const;

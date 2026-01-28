@@ -104,7 +104,6 @@ int Game::handleMapEvent(int cell, Player& player, SaveLoad& saveLoad) {
     default: {
         break;
     }
-
            return 0;
     }
 }
