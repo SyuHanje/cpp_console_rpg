@@ -21,6 +21,9 @@ public:
 	static int chooseNormalSkill();
 	static int chooseSpecialSkill();
 
+	//マップ構築処理
+	static int randomCellType();
+
 	//ステータスの初期変動関数
 	static StatusRate createPlayerStatusRate();
 	static StatusRate createEnemyStatusRate();

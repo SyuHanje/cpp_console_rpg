@@ -135,3 +135,13 @@ int Random::chooseSpecialSkill() {
     }
     return 4;
 }
+
+//マップ構成ランダム抽選
+int Random::randomCellType() {
+    int r = rand() % 100;
+
+    if (r < 60) return 0; // 通常
+    if (r < 75) return 2; // 回復
+    if (r < 95) return 3; // スキル
+    return 0;
+}

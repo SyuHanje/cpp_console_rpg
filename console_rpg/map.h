@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef _MAP_H_
 #define _MAP_H_
 
@@ -19,6 +20,9 @@ public:
 
 	//マップ移動選択
 	void move();
+
+	//マップ生成関数
+	void generateMap();
 
 	//マップセーブ・ロード用の取得・代入
 	void setPosition(int px, int py);

@@ -120,3 +120,7 @@ const int(&Map::getMap() const)[5][12]{
 void Map::setMapCell(int i, int j, int value) {
     map[i][j] = value;
 }
+
+//ƒ}ƒbƒv¶¬
+void Map::generateMap() {
+}
