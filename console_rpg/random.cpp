@@ -5,6 +5,11 @@
 
 using namespace std;
 
+//マスカウント
+int Random::Cell = 0;
+int Random::healCell = 0;
+int Random::skillCell = 0;
+
 //乱数生成
 static mt19937 gen(
     chrono::system_clock::now().time_since_epoch().count()
@@ -136,23 +141,73 @@ int Random::chooseSpecialSkill() {
     return 4;
 }
 
-//マップ構成ランダム抽選
-int Random::randomCellType() {
+//マス生成の確率管理
+int Random::randomCellChoice(int x) {
+    int Row = 0;
+
+    //最初の一列は通常確率
+    if (Cell < 10) {
+        return randomCellType(x);
+    }
+    //二列目以降は特殊マスの割合から確率調整
+    return randomCellType(x);
+}
+
+//マップ構成ランダム抽選(通常)
+int Random::randomCellType(int Row) {
     int r = randomRange(0, 99);
+    Cell++;
 
-    //ランダムマス
-    if (r < 60) {
-        return 0;
+    //スタート地点からの距離に応じて確率変化
+    if (Row < 5) {
+        //ランダムマス
+        if (r < 60) {
+            return 0;
+        }
+
+        //回復
+        if (r < 80) {
+            healCell++;
+            return 2;
+        }
+
+        //スキル
+        if (r < 100) {
+            skillCell++;
+            return 3;
+        }
     }
 
-    //回復
-    if (r < 80) {
-        return 2;
+    if (Row < 8) {
+        //ランダムマス
+        if (r < 70) {
+            return 0;
+        }
+
+        //回復
+        if (r < 85) {
+            healCell++;
+            return 2;
+        }
+
+        //スキル
+        if (r < 100) {
+            skillCell++;
+            return 3;
+        }
     }
 
-    //スキル
-    if (r < 100) {
-        return 3;
+    if (Row < 11) {
+        //ランダムマス
+        if (r < 90) {
+            return 0;
+        }
+
+        //回復
+        if (r < 100) {
+            healCell++;
+            return 2;
+        }
     }
 
     return 0;

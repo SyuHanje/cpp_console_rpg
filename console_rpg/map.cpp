@@ -138,7 +138,7 @@ void Map::generateMap() {
             }
 
             //その他のマスはランダム抽選
-            map[y][x] = Random::randomCellType();
+            map[y][x] = Random::randomCellChoice(x);
         }
     }
 }

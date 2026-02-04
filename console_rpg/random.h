@@ -21,12 +21,21 @@ public:
 	static int chooseNormalSkill();
 	static int chooseSpecialSkill();
 
-	//マップ構築処理
-	static int randomCellType();
+	//マス生成確率コントロール
+	static int randomCellChoice(int);
+	//マス生成処理
+	static int randomCellType(int);
 
 	//ステータスの初期変動関数
 	static StatusRate createPlayerStatusRate();
 	static StatusRate createEnemyStatusRate();
+
+private:
+	//生成したマスの総数
+	static int Cell;
+	//生成した特殊マスのカウント
+	static int healCell;
+	static int skillCell;
 };
 
 #endif //_RANDOM_H_
