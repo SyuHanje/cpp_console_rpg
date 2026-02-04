@@ -123,4 +123,22 @@ void Map::setMapCell(int i, int j, int value) {
 
 //マップ生成
 void Map::generateMap() {
+    for (int y = 1; y < 5 - 1; y++) {
+        for (int x = 1; x < 12 - 1; x++) {
+
+            //スタート地点固定
+            if (y == 3 && x == 1) {
+                map[y][x] = 1;
+                continue;
+            }
+            //ボス地点固定
+            if (y == 1 && x == 10) {
+                map[y][x] = 4;
+                continue;
+            }
+
+            //その他のマスはランダム抽選
+            map[y][x] = Random::randomCellType();
+        }
+    }
 }
